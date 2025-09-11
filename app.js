@@ -19,9 +19,9 @@ function replaceEmojis(text) {
   return text;
 }
 
-function addMessage(text, type='sent') {
+function addMessage(text) {
   const msg = document.createElement('div');
-  msg.classList.add('message', type);
+  msg.classList.add('message'); // no sent/received distinction now
   
   const timestamp = document.createElement('span');
   timestamp.classList.add('timestamp');
@@ -40,14 +40,9 @@ function addMessage(text, type='sent') {
 function sendMessage() {
   const text = messageInput.value.trim();
   if (text !== '') {
-    addMessage(text, 'sent');
+    addMessage(text);
     messageInput.value = '';
     messageInput.focus();
-
-    // Simulate received message (optional)
-    setTimeout(() => {
-      addMessage('Echo: ' + text, 'received');
-    }, 500);
   }
 }
 
