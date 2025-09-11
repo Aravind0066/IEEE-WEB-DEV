@@ -44,14 +44,15 @@ body {
 .message {
   margin: 8px 0;
   padding: 10px 15px;
-  border-radius: 20px;
-  max-width: 75%;
+  border-radius: 12px;
+  max-width: 90%;
   color: #fff;
   word-wrap: break-word;
-  display: inline-block;
   font-size: 14px;
   position: relative;
   animation: fadeInUp 0.3s ease-in-out;
+  background: var(--sent-gradient); /* use one style */
+  align-self: flex-start; /* always left side */
 }
 
 .sent {
