@@ -1,13 +1,19 @@
 :root {
-  --bg-color: #f2f2f2;
+  --bg-color: #e0eafc;
+  --bg-gradient: linear-gradient(135deg, #e0eafc, #cfdef3);
+  --chat-bg: rgba(255, 255, 255, 0.8);
   --sent-color: #4caf50;
   --received-color: #0084ff;
+  --sent-gradient: linear-gradient(135deg, #43e97b, #38f9d7);
+  --received-gradient: linear-gradient(135deg, #6a11cb, #2575fc);
+  --btn-gradient: linear-gradient(135deg, #6a11cb, #2575fc);
   --text-color: #333;
+  --timestamp-color: #777;
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: var(--bg-color);
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg-gradient);
   margin: 0;
   display: flex;
   justify-content: center;
@@ -18,95 +24,146 @@ body {
 .chat-container {
   width: 400px;
   height: 600px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
-  background-color: #fff;
+  backdrop-filter: blur(15px);
+  background: var(--chat-bg);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
   overflow: hidden;
 }
 
 .chat-window {
   flex: 1;
-  padding: 10px;
+  padding: 15px;
   overflow-y: auto;
-  background-color: #eee;
+  background: transparent;
+  scroll-behavior: smooth;
 }
 
 .message {
-  margin: 5px 0;
-  padding: 8px 12px;
-  border-radius: 15px;
-  max-width: 70%;
+  margin: 8px 0;
+  padding: 10px 15px;
+  border-radius: 20px;
+  max-width: 75%;
   color: #fff;
   word-wrap: break-word;
   display: inline-block;
+  font-size: 14px;
+  position: relative;
+  animation: fadeInUp 0.3s ease-in-out;
 }
 
 .sent {
-  background-color: var(--sent-color);
+  background: var(--sent-gradient);
   align-self: flex-end;
+  border-bottom-right-radius: 5px;
 }
 
 .received {
-  background-color: var(--received-color);
+  background: var(--received-gradient);
   align-self: flex-start;
+  border-bottom-left-radius: 5px;
 }
 
 .timestamp {
   font-size: 10px;
-  color: #ccc;
-  margin-left: 5px;
+  color: var(--timestamp-color);
+  margin-left: 8px;
 }
 
 .input-area {
   display: flex;
-  padding: 10px;
-  border-top: 1px solid #ccc;
+  padding: 12px;
+  border-top: 1px solid #ddd;
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .input-area input {
   flex: 1;
-  padding: 8px;
-  border-radius: 20px;
+  padding: 10px 15px;
+  border-radius: 25px;
   border: 1px solid #ccc;
   outline: none;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.input-area input:focus {
+  border-color: #2575fc;
+  box-shadow: 0 0 8px rgba(37, 117, 252, 0.3);
 }
 
 .input-area button {
-  margin-left: 5px;
-  padding: 8px 15px;
-  border-radius: 20px;
+  margin-left: 8px;
+  padding: 10px 18px;
+  border-radius: 25px;
   border: none;
-  background-color: #0084ff;
+  background: var(--btn-gradient);
   color: #fff;
+  font-weight: 600;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .input-area button:hover {
-  opacity: 0.8;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .controls {
   display: flex;
   justify-content: space-between;
-  padding: 5px 10px;
+  padding: 8px 15px;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
 }
 
 .theme-toggle {
   cursor: pointer;
-  color: #0084ff;
+  font-weight: 600;
+  color: #2575fc;
+  transition: 0.2s;
+}
+
+.theme-toggle:hover {
   text-decoration: underline;
 }
 
-/* Dark theme */
+#clear-chat {
+  background: var(--btn-gradient);
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#clear-chat:hover {
+  transform: scale(1.05);
+}
+
+/* Dark Theme */
 body.dark {
-  --bg-color: #121212;
-  --sent-color: #1e8449;
-  --received-color: #3498db;
-  --text-color: #eee;
+  --bg-gradient: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  --chat-bg: rgba(20, 20, 20, 0.8);
+  --timestamp-color: #aaa;
 }
 
 body.dark .chat-window {
-  background-color: #222;
+  background: transparent;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
